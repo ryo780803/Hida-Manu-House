@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hida Manu House | 飛騨高山のプライベート宿</title>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --section-padding: 100px 5%;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .mincho { font-family: 'Shippori Mincho', serif; letter-spacing: 0.05em; }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* 言語切り替えの設定 */
+        .lang-en { display: none; }
+        body.is-en .lang-ja { display: none; }
+        body.is-en .lang-en { display: block; }
+        body.is-en span.lang-en { display: inline; }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo { font-family: 'Shippori Mincho', serif; font-weight: bold; font-size: 1.2rem; color: var(--primary-color); text-decoration: none; }
+
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; transition: 0.3s; }
+
+        .lang-switch { display: flex; gap: 10px; border-left: 1px solid #ddd; padding-left: 20px; }
+        .lang-btn { cursor: pointer; font-size: 0.8rem; border: none; background: none; color: #aaa; padding: 0 5px; }
+        .lang-btn.active { color: var(--primary-color); font-weight: bold; text-decoration: underline; }
+
+        .burger { display: none; cursor: pointer; }
+        .burger div { width: 25px; height: 2px; background-color: var(--primary-color); margin: 5px; transition: all 0.3s ease; }
+
+        /* --- Header --- */
+        header {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("images/takayama.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 20px;
+        }
+
+        .hero-text h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 15px; }
+
+        /* --- Sections --- */
+        section { padding: var(--section-padding); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title span { display: block; font-size: 0.8rem; color: #999; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 10px; }
+        .section-title h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
+
+        .host-section { background-color: #fcfcfc; }
+        .host-flex { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .host-image, .host-text { flex: 1; min-width: 300px; }
+        .host-image img { width: 100%; border-radius: 4px; box-shadow: 15px 15px 0px #f0f0f0; }
+
+        .tag { display: inline-block; padding: 4px 12px; border: 1px solid #ccc; font-size: 0.75rem; margin-right: 8px; margin-top: 15px; color: #666; }
+
+        .cta-btn { display: inline-block; padding: 18px 60px; background-color: var(--primary-color); color: white; text-decoration: none; font-weight: bold; transition: 0.4s; margin-top: 30px; }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute; right: 0; height: 100vh; top: 0; background-color: white;
+                flex-direction: column; align-items: center; justify-content: center; width: 75%;
+                transform: translateX(100%); transition: transform 0.5s ease-in;
+                box-shadow: -10px 0 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.nav-active { transform: translateX(0%); }
+            .burger { display: block; z-index: 1100; }
+            /* ハンバーガーのアニメーション用クラス */
+            .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+            .toggle .line2 { opacity: 0; }
+            .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+            .lang-switch { border: none; padding: 0; margin-top: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Hida Manu House</a>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#about"><span class="lang-ja">コンセプト</span><span class="lang-en">Concept</span></a></li>
+                <li><a href="#host"><span class="lang-ja">オーナー紹介</span><span class="lang-en">Owner</span></a></li>
+                <li><a href="#reserve"><span class="lang-ja">ご予約</span><span class="lang-en">Reserve</span></a></li>
+                <div class="lang-switch">
+                    <button id="btn-ja" class="lang-btn active" onclick="setLang('ja')">JP</button>
+                    <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+                </div>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-text">
+            <h1 class="lang-ja">家のようにくつろぐ旅を、高山で。</h1>
+            <h1 class="lang-en">A place where you feel at home in Hida Takayama.</h1>
+            <p class="lang-ja">Hida Manu House - 飛騨高山のプライベート宿</p>
+            <p class="lang-en">Your private home away from home.</p>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            <span>Concept</span>
+            <h2 class="lang-ja">ただいまと言いたくなる、心の拠点。</h2>
+            <h2 class="lang-en">Your Second Home in Japan.</h2>
+        </div>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p class="lang-ja">Hida Manu Houseは、飛騨高山の地で「暮らすように旅をする」をゲストハウス型民泊です。清潔感あふれる室内、使い勝手の良いキッチン、そして大切な人と囲むダイニング。我が家のような安心感をご堪能ください。</p>
+            <p class="lang-en">Experience a "living-style" journey in the heart of Hida Takayama. Our private house features clean modern interiors, a fully equipped kitchen, and a cozy dining area. Enjoy the peace and comfort of your own home.</p>
+        </div>
+    </section>
+
+    <section id="host" class="host-section">
+        <div class="container">
+            <div class="host-flex">
+                <div class="host-image">
+                    <img src="images/IMG_5617.jpg" alt="Owner Profile">
+                </div>
+                <div class="host-text">
+                    <div class="section-title" style="text-align: left;">
+                        <span>Host Story</span>
+                        <h2 class="lang-ja">飛騨を愛するプロが導く、<br>特別な滞在。</h2>
+                        <h2 class="lang-en">Guided by a Hida Professional.</h2>
+                    </div>
+                    <div class="lang-ja">
+                        <p>旅館・ホテルで約8年、最高のおもてなしを追求してきました。日本語、英語、ヒンディー語での対応が可能です。</p>
+                        <p>「地元の人が通う店は？」「混雑を避けるコツは？」ガイドブックにはない“リアルな飛騨”を、プロの視点でご提案します。安心してお任せください。</p>
+                    </div>
+                    <div class="lang-en">
+                        <p>With 8 years of experience in the Hida hospitality industry, I am dedicated to providing top-tier service. I speak Japanese, English, and Hindi.</p>
+                        <p>From local favorite eateries to tips on avoiding crowds at Shirakawa-go, I offer "real Hida" guidance not found in guidebooks.</p>
+                    </div>
+                    <div class="language-tags">
+                        <span class="tag">日本語 OK</span><span class="tag">English OK</span><span class="tag">हिन्दी OK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reserve" style="text-align: center;">
+        <div class="section-title">
+            <span>Reservation</span>
+            <h2 class="lang-ja">ご予約はこちら</h2>
+            <h2 class="lang-en">Book Your Stay</h2>
+        </div>
+        <p class="lang-ja">公式予約サイト（Booking.com）にて最新の状況をご確認いただけます。</p>
+        <p class="lang-en">Check availability and book your stay on Booking.com.</p>
+        <a href="https://www.booking.com/hotel/jp/hida-manu-househidamanuhausu.ca.html?aid=356980&label=gog235jc-10CAsodUIcaGlkYS1tYW51LWhvdXNlaGlkYW1hbnVoYXVzdUgEWANodYgBAZgBM7gBGcgBDNgBA-gBAfgBAYgCAagCAbgC2NTEzgbAAgHSAiRiYjEyNTg2OC05MmI5LTQ0MDMtOTY4Ni0yNTBhOTM5M2FkYWXYAgHgAgE&sid=a88c0bcb16795d4ca08271be2b3a6e14&all_sr_blocks=1606334702_431569909_4_0_0&checkin=2026-04-16&checkout=2026-04-17&dest_id=-245205&dest_type=city&dist=0&group_adults=4&group_children=0&hapos=1&highlighted_blocks=1606334702_431569909_4_0_0&hpos=1&matching_block_id=1606334702_431569909_4_0_0&no_rooms=1&req_adults=4&req_children=0&room1=A%2CA%2CA%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1606334702_431569909_4_0_0__4104000&srepoch=1775315635&srpvid=94246aed5a770038&type=total&ucfs=1&" class="cta-btn">
+            <span class="lang-ja">空室確認 / ご予約</span>
+            <span class="lang-en">Check Availability</span>
+        </a>
+    </section>
+
+    <footer style="text-align: center; padding: 60px 20px; font-size: 0.75rem; color: #aaa; background: #fafafa;">
+        <p>Hida Manu House<br>〒506-0052 岐阜県高山市下岡本町961-7</p>
+        <p style="margin-top: 10px;">© 2026 Hida Manu House. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            if(lang === 'en') {
+                document.body.classList.add('is-en');
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-ja').classList.remove('active');
+            } else {
+                document.body.classList.remove('is-en');
+                document.getElementById('btn-ja').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+
+        // ハンバーガーメニュー制御の修正
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        // クリックで開閉
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        });
+
+        // メニュー内のリンクをクリックしたらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('nav-active')) {
+                    nav.classList.remove('nav-active');
+                    burger.classList.remove('toggle');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
