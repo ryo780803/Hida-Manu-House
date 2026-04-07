@@ -43,7 +43,7 @@
         .hero-text h1 { font-size: clamp(1.4rem, 4vw, 2.5rem); margin-bottom: 10px; text-shadow: 0 2px 15px rgba(0,0,0,0.3); }
 
         /* Section Global */
-        section { padding: 120px 0; }
+        section { padding: 50px 0; }
         .section-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #bbb; display: block; margin-bottom: 15px; text-align: center; }
         .section-title { text-align: center; margin-bottom: 80px; }
         .section-title h2 { font-size: 1.8rem; border-bottom: 1px solid var(--soft-pink); display: inline-block; padding-bottom: 10px; }
@@ -52,8 +52,8 @@
         .concept-text-box { max-width: 800px; margin: 0 auto; text-align: center; }
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .service-card { background: var(--card-bg); border: 1px solid #f0f0f0; padding: 40px 25px; border-top: 6px solid var(--soft-pink); }
-        .service-icon { margin-bottom: 20px; display: block; text-align: center; width: 100%; height: 32%;}
-        img {width: 50%;;}
+        .service-icon { margin-bottom: 20px; display: block; text-align: center; width: 100%; height: 20%;}
+        img {width: 20%;;}
         .service-card h3 { font-size: 1rem; margin-bottom: 20px; text-align: center; display: flex; align-items: center; justify-content: center; }
         .service-card p { font-size: 0.9rem; color: #666; text-align: justify; }
 
@@ -86,6 +86,8 @@
         .cta-btn { display: inline-block; padding: 20px 80px; background-color: var(--primary-color); color: white; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.2em; margin-top: 40px; }
         .booking-notice { font-size: 0.7rem; color: #999; margin-top: 15px; display: block; }
 
+        .left {text-align: left;}
+
         /* --- Responsive --- */
         @media (max-width: 1024px) {
             .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 80%; background: white; flex-direction: column; justify-content: center; align-items: center; transition: 0.5s; }
@@ -110,8 +112,10 @@
                 box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             }
 
-            .service-icon { margin-bottom: 20px; display: block; text-align: center; width: 100%; height: 42%;}
-        img {width: 50%;;}
+            .service-icon { margin-bottom: 20px; display: block; text-align: center; width: 100%; height: 16%;}
+        img {width: 10%;;}
+
+            .service-card h3 {font-size: 1.25rem;}
 
 
             .access-info {padding: 45px 45px 15px 45px;}
@@ -161,7 +165,7 @@
                 <h2 class="lang-en mincho">Your Serene Home Away from Home</h2>
             </div>
             <div class="concept-text-box">
-                <p class="lang-ja">Hida Manu Houseは、飛騨高山の地で「暮らすように旅をする」を叶えるゲストハウス型民泊です。<br>高山観光、白川郷、飛騨古川、奥飛騨温泉郷など、人気観光スポットへのアクセスも良く、観光→温泉→宿でののんびりという最高の流れを楽しめる立地が魅力です。清潔感あふれる室内、使い勝手の良いキッチン、および大切な人と囲むダイニング。我が家のような安心感をご堪能ください。</p>
+                <p class="left" class="lang-ja">Hida Manu Houseは、飛騨高山の地で「暮らすように旅をする」を叶えるゲストハウス型民泊です。<br>高山観光、白川郷、飛騨古川、奥飛騨温泉郷など、人気観光スポットへのアクセスも良く、観光→温泉→宿でののんびりという最高の流れを楽しめる立地が魅力です。清潔感あふれる室内、使い勝手の良いキッチン、および大切な人と囲むダイニング。我が家のような安心感をご堪能ください。</p>
                 <p class="lang-en">At Hida Manu House, we offer a "live-like-a-local" experience in beautiful Hida Takayama. Perfectly positioned for exploring the historic streets of Takayama, Shirakawa-go, and the rejuvenating Okuhida hot springs, our house is the ideal base for your adventures. With pristine modern interiors, a fully-equipped kitchen, and a cozy dining area, you can enjoy a private, tranquil stay with your loved ones just as you would in your own home.</p>
             </div>
         </section>
@@ -169,7 +173,7 @@
         <section id="service">
             <span class="section-label">SERVICE</span>
             <div class="section-title">
-                <h2 class="lang-ja mincho">快適な滞在のための、3つの約束。</h2>
+                <h2 class="lang-ja mincho">快適な滞在のための、<br>3つの約束。</h2>
                 <h2 class="lang-en mincho">Our Commitments to Your Comfort</h2>
             </div>
             <div class="service-grid">
@@ -182,7 +186,7 @@
                 </div>
                 <div class="service-card">
                     <span class="service-icon"><img src="images/ほうきのアイコン1.png" alt=""></span>
-                    <h3 class="lang-ja mincho">毎日清掃で常に清潔・<br>快適な空間をご提供</h3>
+                    <h3 class="lang-ja mincho">毎日清掃で常に清潔<br>快適な空間をご提供</h3>
                     <h3 class="lang-en mincho">Impeccable Cleanliness &<br>Daily Maintenance</h3>
                     <p class="lang-ja">清潔さにこだわり、毎日丁寧に清掃を実施しています。小さなお子さま連れのご家族や長期滞在の方にも安心してお過ごしいただけるよう、整った設備と落ち着いたインテリアでお迎えいたします。</p>
                     <p class="lang-en">We take immense pride in maintaining a spotless environment. Our daily professional cleaning ensures a safe and comfortable stay for families with children and long-term travelers alike.</p>
