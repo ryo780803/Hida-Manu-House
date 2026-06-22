@@ -271,19 +271,70 @@
         </div>
     </section>
 
-    <div class="container">
-        <section id="reserve" class="reserve-section">
-            <span class="section-label">RESERVATION</span>
-            <h2 class="lang-ja mincho">ご予約はこちら</h2>
-            <h2 class="lang-en mincho">Book Your Stay</h2>
-            <a href="https://www.booking.com/hotel/jp/hida-manu-househidamanuhausu.ja.html?aid=356980&label=gog235jc-10CAsodUIcaGlkYS1tYW51LWhvdXNlaGlkYW1hbnVoYXVzdUgEWANodYgBAZgBM7gBGcgBDNgBA-gBAfgBAYgCAagCAbgC_PbRzgbAAgHSAiRmY2E1ZTMxOC0xY2ZhLTRhMmEtOTQwOS0xYjExM2U0YzA1YjfYAgHgAgE&sid=a88c0bcb16795d4ca08271be2b3a6e14&all_sr_blocks=1606334702_431569909_4_0_0&checkin=2026-04-16&checkout=2026-04-17&dest_id=-245205&dest_type=city&dist=0&group_adults=4&group_children=0&hapos=1&highlighted_blocks=1606334702_431569909_4_0_0&hpos=1&map=1&matching_block_id=1606334702_431569909_4_0_0&no_rooms=1&req_adults=4&req_children=0&room1=A%2CA%2CA%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1606334702_431569909_4_0_0__5596364&srepoch=1775532934&srpvid=bc92193f1d14061b&type=total&ucfs=1&lang=ja&soz=1&lang_changed=1#availability" class="cta-btn">
-                <span class="lang-ja">空室確認 / ご予約</span>
-                <span class="lang-en">Check Availability</span>
+<section id="reserve" class="reserve-section">
+    <span class="section-label">RESERVATION</span>
+    <h2 class="lang-ja mincho">ご予約はこちら</h2>
+    <h2 class="lang-en mincho">Book Your Stay</h2>
+    
+    <button type="button" id="openModalBtn" class="cta-btn" style="cursor: pointer; border: none;">
+        <span class="lang-ja">空室確認 / ご予約</span>
+        <span class="lang-en">Check Availability</span>
+    </button>
+    
+    <span class="booking-notice lang-ja">※外部予約サイトへ移動します</span>
+    <span class="booking-notice lang-en">*You will be redirected to an external booking site</span>
+</section>
+
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        
+        <h3 class="mincho" style="margin-bottom: 20px;">
+            <span class="lang-ja">予約サイトを選択</span>
+            <span class="lang-en">Select a booking site</span>
+        </h3>
+        
+        <div class="modal-buttons">
+            <a href="https://www.booking.com/hotel/jp/hida-manu-househidamanuhausu.ja.html?aid=2127552&label=metagha-link-LUJP-hotel-16063347_dev-desktop_los-1_bw-1_dow-Tuesday_defdate-1_room-0_gstadt-2_rateid-dg_aud-0_gacid-_mcid-50_bc-APUbcw_ppa-0_clrid-0_ad-0_gstkid-0_checkin-20260623_ppt-GB&sid=3229f1b69da449d4b78f4b421f1e0e96&all_sr_blocks=1606334701_432823747_2_0_0&checkin=2026-06-23&checkout=2026-06-24&dest_id=16063347&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=1606334701_432823747_2_0_0&hpos=1&matching_block_id=1606334701_432823747_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1606334701_432823747_2_0_0__854546&srepoch=1782124199&srpvid=d9f649cddab81492&type=total&ucfs=1&" class="modal-link" class="modal-link" target="_blank">
+                <span class="lang-ja">Booking.com で予約</span>
+                <span class="lang-en">Book via Booking.com</span>
             </a>
-            <span class="booking-notice lang-ja">※外部サイト（Booking.com）へ移動します</span>
-            <span class="booking-notice lang-en">*You will be redirected to Booking.com</span>
-        </section>
-    </div> 
+            <a href="https://www.airbnb.jp/rooms/1486946229938484684?source_impression_id=p3_1782124459_P3GPIssL70_q_tUz" class="modal-link" class="modal-link" target="_blank">
+                <span class="lang-ja">Airbnb で予約</span>
+                <span class="lang-en">Book via Airbnb</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+/* モーダルの背景 */
+.modal {
+    display: none; 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 9999; /* 念のため高く設定 */
+}
+.modal-content {
+    background: #fff; margin: 15% auto; padding: 30px;
+    width: 90%; max-width: 400px; text-align: center; border-radius: 8px;
+    position: relative;
+}
+/* 選択肢のボタンデザイン */
+.modal-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.modal-link { 
+    display: block; padding: 15px; background: #f4f4f4; 
+    text-decoration: none; color: #333; border-radius: 4px; border: 1px solid #ddd;
+    font-size: 0.9rem; transition: 0.3s;
+}
+.modal-link:hover { background: #e0e0e0; }
+.close-btn { 
+    position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 24px; color: #999;
+}
+.modal-link:active {
+    background: #d0d0d0;
+}
+</style>
 
     <footer style="text-align: center; padding: 60px 0; font-size: 0.7rem; color: #ccc; border-top: 1px solid #eee;">
         <p>© 2026 Hida Manu House. All Rights Reserved.</p>
@@ -317,6 +368,14 @@
                 nav.classList.remove('active');
             }
         }
+
+        const modal = document.getElementById("bookingModal");
+const btn = document.getElementById("openModalBtn");
+const closeBtn = document.querySelector(".close-btn");
+
+btn.onclick = () => modal.style.display = "block";
+closeBtn.onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
     </script>
 </body>
 </html>
